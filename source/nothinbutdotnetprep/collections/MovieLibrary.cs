@@ -93,12 +93,26 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_kid_movies()
         {
-            throw new NotImplementedException();
+            var tmpList = new List<Movie>();
+
+            foreach (Movie movie in movies)
+            {
+                if (movie.genre == Genre.kids)
+                    tmpList.Add(movie);
+            }
+            return tmpList;
         }
 
         public IEnumerable<Movie> all_action_movies()
         {
-            throw new NotImplementedException();
+            var tmpList = new List<Movie>();
+
+            foreach (Movie movie in movies)
+            {
+                if (movie.genre == Genre.action)
+                    tmpList.Add(movie);
+            }
+            return tmpList;
         }
 
         public IEnumerable<Movie> sort_all_movies_by_date_published_descending()
