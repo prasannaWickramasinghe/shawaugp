@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.collections
@@ -14,12 +15,18 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies()
         {
-            return this.movies;
+            //return this.movies;
+            foreach (var movie in movies)
+            {
+                yield return movie;
+            }
         }
 
         public void add(Movie movie)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            if(movies.Contains(movie))
+                return;
         }
 
         public IEnumerable<Movie> sort_all_movies_by_title_descending()
@@ -29,12 +36,26 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies_published_by_pixar()
         {
-            throw new NotImplementedException();
+            var tmpList = new List<Movie>();
+
+            foreach (Movie movie in movies)
+            {
+                if (movie.production_studio == ProductionStudio.Pixar)
+                    tmpList.Add(movie);
+            }
+            return tmpList;
         }
 
         public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
         {
-            throw new NotImplementedException();
+            var tmpList = new List<Movie>();
+
+            foreach (Movie movie in movies)
+            {
+                if ((movie.production_studio == ProductionStudio.Pixar) ||(movie.production_studio == ProductionStudio.Disney))
+                    tmpList.Add(movie);
+            }
+            return tmpList;
         }
 
         public IEnumerable<Movie> sort_all_movies_by_title_ascending()
@@ -49,7 +70,15 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies_not_published_by_pixar()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var tmpList = new List<Movie>();
+
+            foreach (Movie movie in movies)
+            {
+                if (movie.production_studio != ProductionStudio.Pixar)
+                    tmpList.Add(movie);
+            }
+            return tmpList;
         }
 
         public IEnumerable<Movie> all_movies_published_after(int year)
